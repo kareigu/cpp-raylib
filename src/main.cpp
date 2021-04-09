@@ -1,61 +1,15 @@
 #include <raylib-cpp.hpp>
 #include <string>
-
-enum StateTextTypes {
-    FPS,
-    Delta,
-    Elapsed,
-};
-
-struct AppState {
-
-    AppState() {
-        this->update_values();
-    }
-
-    void update_values() {
-        this->fps = GetFPS();
-        this->delta = GetFrameTime();
-        this->elapsed = GetTime();
-    }
-
-    std::string get_text(StateTextTypes type) {
-        std::string text;
-        switch(type) {
-            case FPS:
-                text = std::to_string(this->fps) + " fps";
-                break;
-            case Delta:
-                text = std::to_string(this->delta) + " s";
-                break;
-            case Elapsed:
-                text = std::to_string(this->elapsed) + " seconds";
-                break;
-            default:
-                text = "Invalid value type";
-                break;
-        }
-
-        return text;
-    }
-
-private:
-    int fps;
-    float delta;
-    double elapsed;
-};
-
+#include <tuple>
+#include "app_state.hpp"
+#include "renderer.hpp"
 
 int main() {
-    
-    // Initialization
-    int screenWidth = 800;
-    int screenHeight = 450;
 
-    AppState app_state = AppState();
+    AppState app_state(800, 450);
+    AppRenderer app_renderer(&app_state);
 
-    raylib::Color textColor(WHITE);
-    raylib::Window w(screenWidth, screenHeight, "Raylib C++");
+    raylib::Window w(app_state.screen_resolution[0], app_state.screen_resolution[1], "Raylib C++");
 
     
     // Main game loop
@@ -65,14 +19,17 @@ int main() {
 
         // TODO: Update your variables here
 
+        if(IsKeyPressed(KEY_F1))
+            app_state.debug_visible = !app_state.debug_visible;
+
         app_state.update_values();
+        app_renderer.update();
 
         // Draw
         BeginDrawing();
-        ClearBackground({0, 0, 0, 255});
-        textColor.DrawText(app_state.get_text(FPS), 10, 10, 20);
-        textColor.DrawText(app_state.get_text(Delta), 10, 30, 20);
-        textColor.DrawText(app_state.get_text(Elapsed), 10, 50, 20);
+
+        app_renderer.render();
+
         EndDrawing();
     }
 
