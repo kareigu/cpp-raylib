@@ -16,6 +16,7 @@ struct AppState {
     double elapsed;
     int screen_resolution[2];
     bool debug_visible = true;
+    bool paused = false;
     raylib::Window* w;
     Grid grid;
     Cube* cube;

@@ -34,6 +34,7 @@ int main() {
     app_state.run_update();
     app_renderer.update();
 
+
     // Draw
     BeginDrawing();
     {

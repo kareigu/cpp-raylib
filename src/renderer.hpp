@@ -63,14 +63,22 @@ struct AppRenderer {
       debug_text_color.DrawText(app_state->get_text(Delta), 10, 30, 20);
       debug_text_color.DrawText(app_state->get_text(Elapsed), 10, 50, 20);
     }
+
+    if(app_state->paused) {
+      int x = app_state->screen_resolution[0] / 2 - 70;
+      raylib::Color(BLACK).DrawRectangle(x - 2, 8, 142, 36);
+      text_color.DrawText("PAUSED", x, 10, 34);
+    }
   }
 
   void update() {
-    this->rect_x = std::sin(app_state->elapsed) * 200 + 400;
-    this->camera->Update();
-    Cube* cube = app_state->cube;
-    cube->cubePosition.x = std::sin(app_state->elapsed) * 5.0;
-    cube->cubePosition.z = std::cos(app_state->elapsed) * 5.0;
-    cube->cubeScreenPosition = GetWorldToScreen((Vector3){cube->cubePosition.x, cube->cubePosition.y + 2.5f, cube->cubePosition.z}, *this->camera);
+    if(!app_state->paused) {
+      this->rect_x = std::sin(app_state->elapsed) * 200 + 400;
+      this->camera->Update();
+      Cube* cube = app_state->cube;
+      cube->cubePosition.x = std::sin(app_state->elapsed) * 5.0;
+      cube->cubePosition.z = std::cos(app_state->elapsed) * 5.0;
+      cube->cubeScreenPosition = GetWorldToScreen((Vector3){cube->cubePosition.x, cube->cubePosition.y + 2.5f, cube->cubePosition.z}, *this->camera);
+    }
   }
 };
