@@ -1,6 +1,11 @@
 #pragma once
 #include <raylib-cpp.hpp>
 
+enum CubeState {
+  Alive,
+  Dead,
+};
+
 struct Cube {
   Vector3 cubePosition;
   Vector2 cubeScreenPosition;
@@ -12,9 +17,9 @@ struct Cube {
     DrawCubeWires(cubePosition, 1.0f, 1.0f, 1.0f, this->outline);
   }
 
-  Cube(Color primary_color, Color outline_color) {
-    this->primary = primary_color;
-    this->outline = outline_color;
+  Cube(CubeState state) {
+    this->primary = state == Alive ? WHITE : BLACK;
+    this->outline = state == Alive ? BLACK : WHITE;
   }
 
   Cube() {

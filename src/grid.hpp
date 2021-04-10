@@ -21,9 +21,7 @@ struct Grid {
         int index = ((int)x + (int)width) * size_z + ((int)z + (int)height);
 
         int roll = GetRandomValue(0, 1);
-        Color fill_color = roll > 0 ? BLACK : WHITE;
-        Color outline_color = roll < 1 ? BLACK : WHITE;
-        Cube new_cube(fill_color, outline_color);
+        Cube new_cube(roll > 0 ? Alive : Dead);
         new_cube.cubePosition.x = x;
         new_cube.cubePosition.z = z;
 
