@@ -16,14 +16,14 @@ struct Grid {
     this->size_z = ((int)height * 2);
     this->cubes = new Cube[size_x * size_z];
 
-    for(float x = -width; x < width; x += 2.0f) {
-      for(float z = -height; z < height; z += 2.0f) {
+    for(float x = -width; x < width; x += 1.0f) {
+      for(float z = -height; z < height; z += 1.0f) {
         int index = ((int)x + (int)width) * size_z + ((int)z + (int)height);
 
         int roll = GetRandomValue(0, 1);
         Color fill_color = roll > 0 ? BLACK : WHITE;
-        Color outline_color = roll > 0 ? BLACK : WHITE;
-        Cube new_cube = (fill_color, outline_color);
+        Color outline_color = roll < 1 ? BLACK : WHITE;
+        Cube new_cube(fill_color, outline_color);
         new_cube.cubePosition.x = x;
         new_cube.cubePosition.z = z;
 

@@ -8,12 +8,17 @@ struct Cube {
   Color outline;
 
   void render() {
-    DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, primary);
-    DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, outline);
+    DrawCube(cubePosition, 1.0f, 1.0f, 1.0f, this->primary);
+    DrawCubeWires(cubePosition, 1.0f, 1.0f, 1.0f, this->outline);
   }
 
-  Cube(Color primary_color = RED, Color outline_color = MAROON) {
+  Cube(Color primary_color, Color outline_color) {
     this->primary = primary_color;
     this->outline = outline_color;
+  }
+
+  Cube() {
+    this->primary = RED;
+    this->outline = BLACK;
   }
 };
