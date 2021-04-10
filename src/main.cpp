@@ -18,7 +18,7 @@ int main() {
     45.0f,
     CAMERA_PERSPECTIVE);
 
-  camera.SetMode(CAMERA_FREE);
+  camera.SetMode(CAMERA_FIRST_PERSON);
   AppRenderer app_renderer(&app_state, &camera);
 
 
