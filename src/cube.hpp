@@ -11,19 +11,20 @@ struct Cube {
   Vector2 cubeScreenPosition;
   Color primary;
   Color outline;
+  CubeState state;
 
   void render() {
+    this->primary = state == Alive ? WHITE : BLACK;
+    this->outline = state == Alive ? BLACK : WHITE;
     DrawCube(cubePosition, 1.0f, 1.0f, 1.0f, this->primary);
     DrawCubeWires(cubePosition, 1.0f, 1.0f, 1.0f, this->outline);
   }
 
   Cube(CubeState state) {
-    this->primary = state == Alive ? WHITE : BLACK;
-    this->outline = state == Alive ? BLACK : WHITE;
+    this->state = state;
   }
 
   Cube() {
-    this->primary = RED;
-    this->outline = BLACK;
+    this->state = Alive;
   }
 };

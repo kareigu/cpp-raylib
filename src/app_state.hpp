@@ -25,7 +25,7 @@ struct AppState {
         this->screen_resolution[0] = res_x;
         this->screen_resolution[1] = res_y;
         this->update_values();
-        this->grid = Grid(10.0f, 10.0f);
+        this->grid = Grid(15.0f, 15.0f);
         this->cube = new Cube();
         this->cube->cubePosition.y = 2.0f;
     }
