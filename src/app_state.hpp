@@ -24,7 +24,7 @@ struct AppState {
         this->screen_resolution[0] = res_x;
         this->screen_resolution[1] = res_y;
         this->update_values();
-        this->grid = Grid(res_x, res_y);
+        this->grid = Grid(10.0f, 10.0f);
         this->cube = new Cube();
     }
 
@@ -58,8 +58,6 @@ struct AppState {
         if(this->screen_resolution[0] != this->w->GetScreenWidth() || this->screen_resolution[1] != this->w->GetScreenHeight()) {
             int width = this->screen_resolution[0], height = this->screen_resolution[1];
             w->SetSize(width, height);
-            grid.height = height;
-            grid.width = width;
         }
     }
 };

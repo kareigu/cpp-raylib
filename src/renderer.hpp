@@ -33,15 +33,22 @@ struct AppRenderer {
     {
       DrawGrid(50, 1.0f);
 
-      for(int x = -(app_state->grid.height / 2); x < app_state->grid.width / 2; x++) {
-        for(int y = -(app_state->grid.height / 2); y < app_state->grid.height / 2; y++) {
+      /* for(float x = -5.0f; x < 5.0f; x += 2.0f) {
+        for(float y = -5.0f; y < 5.0f; y += 2.0f) {
           int roll = GetRandomValue(0, 1);
           Color fill_color = roll > 0 ? BLACK : WHITE;
           Color outline_color = roll < 0 ? BLACK : WHITE;
           Cube new_cube = (fill_color, outline_color);
-          new_cube.cubePosition.x += x;
-          new_cube.cubePosition.z += y;
+          new_cube.cubePosition.x = x;
+          new_cube.cubePosition.z = y;
+          new_cube.cubePosition.y = roll;
           new_cube.render();
+        }
+      } */
+      
+      for(int x = 0; x < app_state->grid.size_x; x++) {
+        for(int z = 0; z < app_state->grid.size_z; z++) {
+          app_state->grid.cubes[x * app_state->grid.size_z + z].render();
         }
       }
 
@@ -63,6 +70,7 @@ struct AppRenderer {
     this->camera->Update();
     Cube* cube = app_state->cube;
     cube->cubePosition.x = std::sin(app_state->elapsed) * 5.0;
+    cube->cubePosition.z = std::cos(app_state->elapsed) * 5.0;
     cube->cubeScreenPosition = GetWorldToScreen((Vector3){cube->cubePosition.x, cube->cubePosition.y + 2.5f, cube->cubePosition.z}, *this->camera);
   }
 };
