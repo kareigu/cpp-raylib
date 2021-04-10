@@ -26,7 +26,6 @@ struct Grid {
         Cube new_cube = (fill_color, outline_color);
         new_cube.cubePosition.x = x;
         new_cube.cubePosition.z = z;
-        new_cube.cubePosition.y = roll;
 
         this->cubes[index] = new_cube;
       }

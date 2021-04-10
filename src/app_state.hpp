@@ -27,6 +27,7 @@ struct AppState {
         this->update_values();
         this->grid = Grid(10.0f, 10.0f);
         this->cube = new Cube();
+        this->cube->cubePosition.y = 2.0f;
     }
 
     void update_values() {
