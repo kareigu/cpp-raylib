@@ -18,5 +18,10 @@ struct InputHandler {
 
     if(IsKeyPressed(KEY_LEFT))
         app_state->screen_resolution[0] -= 10;
+    if(IsKeyPressed(KEY_UP))
+      app_state->screen_resolution[1] += 10;
+
+    if(IsKeyPressed(KEY_DOWN))
+        app_state->screen_resolution[1] -= 10;
   }
 };
