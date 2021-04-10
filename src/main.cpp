@@ -12,6 +12,7 @@ int main() {
     InputHandler input_handler(&app_state);
 
     raylib::Window w(app_state.screen_resolution[0], app_state.screen_resolution[1], "Raylib C++");
+    app_state.w = &w;
 
     
     // Main game loop
@@ -22,10 +23,8 @@ int main() {
         input_handler.check_inputs();
 
         app_state.update_values();
+        app_state.run_update();
         app_renderer.update();
-
-        if(app_state.screen_resolution[0] != w.GetScreenWidth() || app_state.screen_resolution[1] != w.GetScreenHeight())
-            w.SetSize(app_state.screen_resolution[0], app_state.screen_resolution[1]);
 
         // Draw
         BeginDrawing();

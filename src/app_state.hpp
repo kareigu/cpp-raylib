@@ -14,6 +14,7 @@ struct AppState {
     double elapsed;
     int screen_resolution[2];
     bool debug_visible = true;
+    raylib::Window* w;
 
     AppState(int res_x, int res_y) {
         this->screen_resolution[0] = res_x;
@@ -45,6 +46,11 @@ struct AppState {
         }
 
         return text;
+    }
+
+    void run_update() {
+        if(this->screen_resolution[0] != this->w->GetScreenWidth() || this->screen_resolution[1] != this->w->GetScreenHeight())
+            w->SetSize(this->screen_resolution[0], this->screen_resolution[1]);
     }
 };
 
